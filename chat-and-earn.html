@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Chat & Earn — Get Paid to Chat</title>
+<style>
+  :root{
+    --teal-dark:#075E54;
+    --teal-header:#128C7E;
+    --bubble-in:#FFFFFF;
+    --bubble-out:#DCF8C6;
+    --bg-chat:#E5DDD5;
+    --gold:#FFC947;
+    --ink:#111B21;
+    --sub:#667781;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    background:var(--teal-dark);
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+  }
+  .frame{
+    width:100%;
+    max-width:460px;
+    min-height:100vh;
+    background:var(--bg-chat);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)),
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0 2px, transparent 2px 40px);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* Header mimics a real chat app top bar */
+  .topbar{
+    background:var(--teal-header);
+    color:#fff;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  .avatar{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;color:#3a2a00;font-size:16px;
+    flex-shrink:0;
+  }
+  .topbar-info{line-height:1.25;}
+  .topbar-name{font-weight:600;font-size:15.5px;}
+  .topbar-status{font-size:12px;opacity:0.85;display:flex;align-items:center;gap:5px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:#7CFC91;display:inline-block;}
+
+  .online-strip{
+    background:rgba(7,94,84,0.9);
+    color:var(--gold);
+    text-align:center;
+    font-size:12.5px;
+    font-weight:600;
+    padding:6px 8px;
+    letter-spacing:0.2px;
+  }
+  .online-strip span{color:#fff;font-weight:800;}
+
+  /* Chat scroll area */
+  .chat{
+    flex:1;
+    padding:16px 12px 10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .bubble{
+    max-width:82%;
+    padding:9px 12px 8px;
+    border-radius:10px;
+    font-size:14.5px;
+    line-height:1.4;
+    box-shadow:0 1px 1px rgba(0,0,0,0.1);
+    opacity:0;
+    transform:translateY(8px);
+    animation:rise .45s ease forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .in{
+    background:var(--bubble-in);
+    border-top-left-radius:2px;
+    align-self:flex-start;
+  }
+  .out{
+    background:var(--bubble-out);
+    border-top-right-radius:2px;
+    align-self:flex-end;
+  }
+  .time{
+    display:block;
+    text-align:right;
+    font-size:10.5px;
+    color:var(--sub);
+    margin-top:3px;
+  }
+  .paid-badge{
+    align-self:flex-start;
+    background:#fff;
+    border-radius:10px;
+    border-top-left-radius:2px;
+    padding:10px 12px;
+    box-shadow:0 1px 1px rgba(0,0,0,0.1);
+    font-size:13.5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    transform:translateY(8px);
+    animation:rise .45s ease forwards;
+  }
+  .paid-badge b{color:#1f8a3d;}
+  .coin{
+    width:22px;height:22px;border-radius:50%;
+    background:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;color:#5a3d00;flex-shrink:0;
+  }
+
+  /* Live payout ticker */
+  .ticker-wrap{
+    margin:2px 12px 4px;
+    background:#fff;
+    border-radius:10px;
+    padding:8px 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.12);
+  }
+  .ticker-icon{font-size:18px;}
+  #ticker-text{
+    font-size:12.5px;
+    color:var(--ink);
+    font-weight:600;
+  }
+  #ticker-text b{color:#1f8a3d;}
+
+  /* CTA dock */
+  .dock{
+    padding:14px 16px 22px;
+    background:linear-gradient(180deg, rgba(229,221,213,0), var(--bg-chat) 30%);
+  }
+  .cta{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:var(--teal-header);
+    color:#fff;
+    font-size:16.5px;
+    font-weight:700;
+    letter-spacing:0.2px;
+    padding:15px 10px;
+    border:none;
+    border-radius:28px;
+    box-shadow:0 6px 16px rgba(7,94,84,0.4);
+    text-decoration:none;
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.025);}
+  }
+  .cta-sub{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--sub);
+    margin-top:9px;
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <div class="topbar">
+    <div class="avatar">$</div>
+    <div class="topbar-info">
+      <div class="topbar-name">Earnings Assistant</div>
+      <div class="topbar-status"><span class="dot"></span> online now</div>
+    </div>
+  </div>
+
+  <div class="online-strip"><span id="online-count">1,842</span> people chatting right now</div>
+
+  <div class="chat" id="chat">
+    <div class="bubble in" style="animation-delay:.1s">Hey 👋 welcome! Chat with me for a few minutes and I'll show you how people are earning from home this week.</div>
+    <div class="bubble out" style="animation-delay:.35s">Is it really free to join?<span class="time">10:41</span></div>
+    <div class="bubble in" style="animation-delay:.6s">Yes, 100% free. No card, no fees. You just chat and complete a few quick tasks.</div>
+    <div class="paid-badge" style="animation-delay:.85s"><span class="coin">$</span> Payout sent — <b>$14.50</b> to a member in Nairobi, 3 min ago</div>
+    <div class="bubble in" style="animation-delay:1.1s">Ready? Tap the button below to start chatting and get your first task 👇</div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-icon">💸</div>
+    <div id="ticker-text">Just now: <b>+$8.20</b> paid out to a new member</div>
+  </div>
+
+  <div class="dock">
+    <a href="#" id="ctaBtn" class="cta">Start Chatting &amp; Earn</a>
+    <div class="cta-sub">Available now · takes less than 2 minutes to start</div>
+  </div>
+
+</div>
+
+<script>
+  // ====== CONFIG ======
+  // Replace with your Adsterra Direct Link URL
+  var ADSTERRA_DIRECT_LINK = "https://REPLACE-WITH-YOUR-ADSTERRA-DIRECT-LINK.com";
+
+  document.getElementById('ctaBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    window.location.href = ADSTERRA_DIRECT_LINK;
+  }, { once: true });
+
+  // Live online counter drift
+  var onlineEl = document.getElementById('online-count');
+  var count = 1842;
+  setInterval(function(){
+    count += Math.floor(Math.random()*5) - 1;
+    if(count < 1200) count = 1200;
+    onlineEl.textContent = count.toLocaleString();
+  }, 2600);
+
+  // Rotating payout ticker
+  var names = ["Harare","Accra","Nairobi","Windhoek","Bulawayo","Kumasi","Mombasa","Walvis Bay"];
+  var tickerEl = document.getElementById('ticker-text');
+  setInterval(function(){
+    var amt = (Math.random()*18 + 4).toFixed(2);
+    var city = names[Math.floor(Math.random()*names.length)];
+    tickerEl.innerHTML = "Just now: <b>+$" + amt + "</b> paid out in " + city;
+  }, 4200);
+</script>
+
+</body>
+</html>
