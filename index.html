@@ -92,7 +92,10 @@
     opacity:0;
     transform:translateY(8px);
     animation:rise .45s ease forwards;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
   }
+  .bubble:active{transform:scale(0.97);}
   @keyframes rise{to{opacity:1;transform:translateY(0);}}
   .in{
     background:var(--bubble-in);
@@ -155,8 +158,11 @@
 
   /* CTA dock */
   .dock{
-    padding:14px 16px 22px;
+    padding:14px 16px 18px;
     background:linear-gradient(180deg, rgba(229,221,213,0), var(--bg-chat) 30%);
+    position:sticky;
+    bottom:0;
+    z-index:6;
   }
   .cta{
     display:block;
@@ -225,10 +231,20 @@
   // Replace with your Adsterra Direct Link URL
   var ADSTERRA_DIRECT_LINK = "https://REPLACE-WITH-YOUR-ADSTERRA-DIRECT-LINK.com";
 
-  document.getElementById('ctaBtn').addEventListener('click', function(e){
-    e.preventDefault();
+  var redirected = false;
+  function goToOffer(e){
+    if (e) e.preventDefault();
+    if (redirected) return;
+    redirected = true;
     window.location.href = ADSTERRA_DIRECT_LINK;
-  }, { once: true });
+  }
+
+  document.getElementById('ctaBtn').addEventListener('click', goToOffer, { once: true });
+
+  // Make every chat bubble clickable too
+  document.querySelectorAll('.bubble, .paid-badge').forEach(function(el){
+    el.addEventListener('click', goToOffer, { once: true });
+  });
 
   // Live online counter drift
   var onlineEl = document.getElementById('online-count');
