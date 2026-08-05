@@ -190,7 +190,7 @@
 <div class="card">
   <h1>ARE YOU<span>IN AFRICA?</span></h1>
 
-  <div class="pitch" id="pitchText">
+  <div class="pitch">
     Get up to $85 daily by chatting online. Earn in Dollar and withdraw directly to your Local Bank. Click below to Continue
   </div>
 
@@ -215,42 +215,6 @@
 </div>
 
 <script>
-  // ---- Fallback / manual override: used if geo-detection fails or is disabled ----
-  var DEFAULT_CURRENCY = "Local Currency";
-
-  // ---- Currency by country (ISO 3166-1 alpha-2 code -> local currency) ----
-  var CURRENCY_MAP = {
-    NG: "Naira",
-    KE: "Shillings",
-    GH: "Cedis",
-    ZW: "Zim Dollars",
-    CM: "CFA Francs",
-    MZ: "Meticais",
-    NA: "Namibian Dollars"
-  };
-  // Fallback for visitors outside the mapped list
-  var GENERIC_CURRENCY = "your local currency";
-
-  function renderPitch(currency){
-    document.getElementById('pitchText').textContent =
-      'Get up to $85 daily by chatting online. Earn in Dollar and withdraw in ' + currency + '. Click below to Continue';
-  }
-
-  // Render the default immediately so the page never looks broken/blank while geolocation loads
-  renderPitch(DEFAULT_CURRENCY);
-
-  // ---- Auto-detect visitor's country via IP, personalize the currency only (falls back silently on any failure) ----
-  fetch('https://ipapi.co/json/')
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      var code = data && data.country_code;
-      if (!code) return;
-      renderPitch(CURRENCY_MAP[code] || GENERIC_CURRENCY);
-    })
-    .catch(function(){
-      // Geolocation failed (offline, blocked, rate-limited) — DEFAULT_CURRENCY stays on screen
-    });
-
   // ---- Countdown timer (resets to 20:00 on load, persists via sessionStorage) ----
   var endKey = 'offerEndsAt';
   var end = sessionStorage.getItem(endKey);
