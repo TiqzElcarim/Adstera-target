@@ -3,250 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Chat & Earn</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Are You In Africa?</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { min-height: 100%; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: #6b21a8;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 24px 60px;
-}
-
-/* Share icon */
-.share {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  color: rgba(255,255,255,0.8);
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.page {
-  width: 100%;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Profile photo */
-.avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255,255,255,0.3);
-  margin-bottom: 12px;
-}
-
-/* Name */
-.name {
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-/* Social icons */
-.socials {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-.sicon {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-.sicon.ig { background: #E1306C; }
-.sicon.tk { background: #000; }
-.sicon.tw { background: #1DA1F2; }
-.sicon.yt { background: #FF0000; }
-
-/* Buttons */
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 15px 20px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.15s;
-  letter-spacing: 0.1px;
-}
-.btn:active { background: rgba(255,255,255,0.28); }
-
-/* Payment popup */
-.popup-wrap {
-  position: fixed;
-  bottom: 24px;
-  left: 14px;
-  z-index: 999;
-  pointer-events: none;
-}
-.popup {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(60,10,90,0.96);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-left: 3px solid #c084fc;
-  padding: 10px 14px;
-  border-radius: 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1), popOut 0.4s ease 7s forwards;
-  max-width: 260px;
-}
-.popup img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-.popup-info { font-size: 12px; color: #ddd; line-height: 1.5; }
-.popup-info b { color: #c084fc; }
-.popup-method { font-size: 10px; color: #888; margin-top: 2px; }
-@keyframes popIn  { from { transform: translateX(-120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-@keyframes popOut { to   { transform: translateX(-120%); opacity: 0; } }
-@keyframes sheen  { 0% { left: -100%; } 100% { left: 150%; } }
+  :root{
+    --green-dark:#1f6b3a;
+    --green:#2e8b4f;
+    --green-light:#e8f3ea;
+    --ink:#1c2b29;
+    --sub:#3d5a53;
+    --bg:#eaf3ec;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(circle at 50% 0%, #f4faf6 0%, var(--bg) 60%, #d9ebe0 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 14px;
+  }
+  .card{
+    width:100%;
+    max-width:400px;
+    background:#fff;
+    border-radius:32px;
+    padding:36px 26px 30px;
+    box-shadow:0 20px 60px rgba(30,80,50,0.18), 0 4px 14px rgba(30,80,50,0.08);
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:140px; height:6px;
+    border-radius:0 0 8px 8px;
+    background:linear-gradient(90deg, var(--green-dark), var(--green));
+  }
+  h1{
+    font-size:2.15rem;
+    line-height:1.12;
+    text-align:center;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    font-weight:800;
+    margin-top:14px;
+  }
+  h1 span{
+    display:block;
+    color:var(--green);
+  }
+  .pitch{
+    background:var(--green-light);
+    border-radius:20px;
+    padding:20px 22px;
+    text-align:center;
+    color:var(--sub);
+    font-size:1.05rem;
+    font-weight:600;
+    line-height:1.45;
+    margin-top:22px;
+  }
+  .timer-row{
+    margin-top:34px;
+    border:1px solid #dbe8de;
+    border-radius:18px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .timer-label{
+    font-weight:700;
+    color:var(--ink);
+    font-size:1.02rem;
+  }
+  .timer-box{
+    background:#fff;
+    border:1px solid #e3eee6;
+    border-radius:999px;
+    padding:8px 18px;
+    font-variant-numeric:tabular-nums;
+    font-weight:800;
+    font-size:1.4rem;
+    color:var(--green-dark);
+    display:flex;
+    align-items:baseline;
+    gap:2px;
+    box-shadow:0 2px 8px rgba(30,80,50,0.06);
+  }
+  .timer-box small{
+    font-size:0.62rem;
+    font-weight:700;
+    color:var(--sub);
+    margin:0 4px;
+  }
+  .cta{
+    margin-top:34px;
+    width:100%;
+    border:none;
+    cursor:pointer;
+    padding:20px 0;
+    border-radius:999px;
+    background:linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+    color:#fff;
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:0.03em;
+    box-shadow:0 14px 26px rgba(31,107,58,0.35);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cta:active{
+    transform:translateY(2px) scale(0.99);
+    box-shadow:0 8px 16px rgba(31,107,58,0.3);
+  }
+  .footnote{
+    margin-top:16px;
+    text-align:center;
+    color:#9aa9a3;
+    font-size:0.85rem;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+  }
+  .pay-toast{
+    position:fixed;
+    left:16px;
+    bottom:16px;
+    max-width:300px;
+    background:#fff;
+    border-radius:14px;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 12px 30px rgba(20,50,35,0.22);
+    border:1px solid #e3eee6;
+    transform:translateY(120%);
+    opacity:0;
+    transition:transform .45s cubic-bezier(.2,.9,.3,1.2), opacity .35s ease;
+    z-index:50;
+  }
+  .pay-toast.show{
+    transform:translateY(0);
+    opacity:1;
+  }
+  .pay-toast .avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--green), var(--green-dark));
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:0.95rem;
+    flex-shrink:0;
+  }
+  .pay-toast .msg{
+    font-size:0.88rem;
+    line-height:1.32;
+    color:var(--ink);
+  }
+  .pay-toast .msg b{
+    color:var(--green-dark);
+  }
+  .pay-toast .msg .time{
+    display:block;
+    color:#9aa9a3;
+    font-size:0.75rem;
+    font-weight:600;
+    margin-top:2px;
+  }
+  @media (max-width:420px){
+    .pay-toast{ left:10px; right:10px; max-width:none; bottom:12px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="popup-wrap" id="popups"></div>
+<div class="card">
+  <h1>ARE YOU<span>IN AFRICA?</span></h1>
 
-<div class="share">⤴</div>
-
-<div class="page">
-
-  <img class="avatar" src="https://i.imgur.com/OrPHarQ.jpeg" alt="Profile">
-
-  <div class="name">Graceful</div>
-
-  <div class="socials">
-    <!-- Instagram -->
-    <a class="sicon ig" href="#">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-      </svg>
-    </a>
-    <!-- TikTok -->
-    <a class="sicon tk" href="#">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
-      </svg>
-    </a>
-    <!-- X / Twitter -->
-    <a class="sicon tw" href="#">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
-      </svg>
-    </a>
-    <!-- YouTube -->
-    <a class="sicon yt" href="#">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-      </svg>
-    </a>
+  <div class="pitch" id="pitchText">
+    Get up to $85 daily by chatting online. Earn in Dollar and withdraw in Naira. Click below to Continue
   </div>
 
-  <div class="links">
-    <a href="https://1buv.com/link?z=10723592&var={SOURCE_ID}&ymid={CLICK_ID}" class="btn" style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      border-radius: 50px;
-      padding: 16px 28px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.3px;
-      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-      position: relative;
-      overflow: hidden;
-    ">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Contact Me
-      <span style="position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:sheen 2.5s infinite;"></span>
-    </a>
-
-    <a href="https://1buv.com/link?z=10723592&var={SOURCE_ID}&ymid={CLICK_ID}" class="btn" style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      background: linear-gradient(135deg, #FFD700, #FF8C00);
-      border-radius: 50px;
-      padding: 16px 28px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #4a2c00;
-      letter-spacing: 0.3px;
-      box-shadow: 0 8px 24px rgba(255,140,0,0.45);
-      position: relative;
-      overflow: hidden;
-    ">
-      <span style="font-size:22px;line-height:1;">💰</span>
-      Chat and Earn
-      <span style="position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:sheen 2.5s infinite;"></span>
-    </a>
+  <div class="timer-row">
+    <span class="timer-label">Offer ends in</span>
+    <div class="timer-box">
+      <span id="mins">20</span><small>m</small>:<span id="secs">00</span><small>s</small>
+    </div>
   </div>
 
+  <button class="cta" onclick="window.location.href='https://1buv.com/link?z=10723592&var={SOURCE_ID}&ymid={CLICK_ID}'">START NOW</button>
+
+  <div class="footnote">🔒 Limited Time Access • Don't Miss Out.</div>
+</div>
+
+<div class="pay-toast" id="payToast">
+  <div class="avatar" id="payAvatar">O</div>
+  <div class="msg">
+    <span id="payText"><b>Obinna</b> just received $59</span>
+    <span class="time" id="payTime">Just now</span>
+  </div>
 </div>
 
 <script>
-var namesMale   = ["Kwame","Emeka","Tunde","Musa","David","John","Ibrahim","Chidi","Felix","Samuel"];
-var namesFemale = ["Amara","Fatima","Ngozi","Grace","Aisha","Akosua","Zuri","Blessing","Yetunde","Adaeze"];
-var countries   = ["Nigeria","Kenya","Ghana","Uganda","Tanzania","Cameroon","South Africa","Zambia","Zimbabwe","Senegal"];
-var methods     = ["M-Pesa","MTN MoMo","OPay","Airtel Money","PayPal","USDT","Bank Transfer"];
-var malePhotos  = [32,44,55,67,12,75,23,88,7,91].map(function(n){return 'https://randomuser.me/api/portraits/men/'+n+'.jpg';});
-var femalePhotos= [44,22,65,31,77,54,13,89,6,38].map(function(n){return 'https://randomuser.me/api/portraits/women/'+n+'.jpg';});
-function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  // ---- Fallback / manual override: used if geo-detection fails or is disabled ----
+  var DEFAULT_CURRENCY = "Naira";
 
-function createPopup(){
-  var wrap = document.getElementById("popups");
-  if(wrap.children.length >= 1) return;
-  var isMale = Math.random() > 0.5;
-  var name   = isMale ? pick(namesMale) : pick(namesFemale);
-  var photo  = isMale ? pick(malePhotos) : pick(femalePhotos);
-  var amount = (Math.random()*180+20).toFixed(2);
-  var d = document.createElement("div");
-  d.className = "popup";
-  d.innerHTML = '<img src="'+photo+'" alt="'+name+'" onerror="this.src=\'https://ui-avatars.com/api/?name='+name+'&background=3c0a5a&color=c084fc&size=36\'">'
-    + '<div class="popup-info"><b>'+name+'</b> from '+pick(countries)+'<br>just earned <b>$'+amount+'</b>'
-    + '<div class="popup-method">💳 via '+pick(methods)+'</div></div>';
-  wrap.appendChild(d);
-  setTimeout(function(){ d.remove(); }, 7600);
-}
-setInterval(createPopup, 3000);
+  // ---- Currency by country (ISO 3166-1 alpha-2 code -> local currency) ----
+  var CURRENCY_MAP = {
+    NG: "Naira",
+    KE: "Shillings",
+    GH: "Cedis",
+    ZW: "Zim Dollars",
+    CM: "CFA Francs",
+    MZ: "Meticais",
+    NA: "Namibian Dollars"
+  };
+  // Fallback for visitors outside the mapped list
+  var GENERIC_CURRENCY = "your local currency";
+
+  function renderPitch(currency){
+    document.getElementById('pitchText').textContent =
+      'Get up to $85 daily by chatting online. Earn in Dollar and withdraw in ' + currency + '. Click below to Continue';
+  }
+
+  // Render the default immediately so the page never looks broken/blank while geolocation loads
+  renderPitch(DEFAULT_CURRENCY);
+
+  // ---- Auto-detect visitor's country via IP, personalize the currency only (falls back silently on any failure) ----
+  fetch('https://ipapi.co/json/')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      var code = data && data.country_code;
+      if (!code) return;
+      renderPitch(CURRENCY_MAP[code] || GENERIC_CURRENCY);
+    })
+    .catch(function(){
+      // Geolocation failed (offline, blocked, rate-limited) — DEFAULT_CURRENCY stays on screen
+    });
+
+  // ---- Countdown timer (resets to 20:00 on load, persists via sessionStorage) ----
+  var endKey = 'offerEndsAt';
+  var end = sessionStorage.getItem(endKey);
+  if (!end) {
+    end = Date.now() + 20 * 60 * 1000;
+    sessionStorage.setItem(endKey, end);
+  } else {
+    end = parseInt(end, 10);
+  }
+  function tick(){
+    var diff = Math.max(0, end - Date.now());
+    var m = Math.floor(diff / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('mins').textContent = m;
+    document.getElementById('secs').textContent = (s < 10 ? '0' : '') + s;
+    if (diff <= 0) {
+      sessionStorage.removeItem(endKey);
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- Animated payment notification toast ----
+  var PAYERS = [
+    "Obinna", "Chiamaka", "Kwame", "Amara", "Tendai",
+    "Ngozi", "Kofi", "Fatima", "Emeka", "Wanjiru",
+    "Abdul", "Chinwe", "Sipho", "Adaeze", "Baraka"
+  ];
+  var payToast = document.getElementById('payToast');
+  var payAvatar = document.getElementById('payAvatar');
+  var payText = document.getElementById('payText');
+  var payTime = document.getElementById('payTime');
+
+  function randomAmount(){
+    return (Math.floor(Math.random() * 71) + 15); // $15 - $85
+  }
+  function randomMinutesAgo(){
+    var n = Math.floor(Math.random() * 12) + 1;
+    return n === 1 ? "1 minute ago" : n + " minutes ago";
+  }
+  function showPayment(){
+    var name = PAYERS[Math.floor(Math.random() * PAYERS.length)];
+    var amount = randomAmount();
+    payAvatar.textContent = name.charAt(0);
+    payText.innerHTML = '<b>' + name + '</b> just received $' + amount;
+    payTime.textContent = randomMinutesAgo();
+    payToast.classList.add('show');
+    setTimeout(function(){
+      payToast.classList.remove('show');
+    }, 4200);
+  }
+  setTimeout(showPayment, 1500);
+  setInterval(showPayment, 7000);
 </script>
+
 </body>
 </html>
